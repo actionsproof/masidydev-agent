@@ -14,7 +14,7 @@ export const metadata = {
 export default async function SettingsPage({
   searchParams,
 }: {
-  readonly searchParams: Promise<{ connected?: string; error?: string; disconnected?: string }>;
+  readonly searchParams: Promise<{ connected?: string; error?: string; disconnected?: string; devnote?: string }>;
 }) {
   // In dev, skip auth check
   let userId = "dev-user";
@@ -66,7 +66,31 @@ export default async function SettingsPage({
           </p>
         </div>
 
+        {/* Dev / deployment notice */}
+        {process.env.NODE_ENV === "development" && (
+          <div className="mb-6 rounded-lg border border-amber-500/30 bg-amber-500/8 px-4 py-3 text-amber-700 text-sm dark:text-amber-400">
+            <strong>Local dev mode</strong> — Connect buttons work on the deployed app at{" "}
+            <a
+              className="underline underline-offset-2"
+              href="https://masidydev.vercel.app/settings"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              masidydev.vercel.app/settings
+            </a>
+            . Vercel Connect requires a Vercel deployment for its OAuth OIDC tokens.
+          </div>
+        )}
+
         {/* Success / error toasts */}
+        {params.devnote && (
+          <div
+            className="mb-6 rounded-lg border border-amber-500/30 bg-amber-500/8 px-4 py-3 text-amber-700 text-sm dark:text-amber-400"
+            role="status"
+          >
+            ℹ️ {params.devnote}
+          </div>
+        )}
         {params.connected && (
           <div
             className="mb-6 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-emerald-700 text-sm dark:text-emerald-400"

@@ -90,6 +90,7 @@ export function ConnectionCard({ service, connected }: ConnectionCardProps) {
             onClick={handleConnect}
             size="sm"
             variant="outline"
+            title="Connect on masidydev.vercel.app (requires Vercel deployment)"
           >
             <LinkIcon aria-hidden="true" className="size-3" />
             Connect
