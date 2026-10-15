@@ -2,8 +2,9 @@
 
 import type { UserContent } from "ai";
 import { useEveAgent } from "eve/react";
-import { AlertCircleIcon, BrainIcon, PlusIcon, SquareIcon } from "lucide-react";
-import { useState } from "react";
+import { AlertCircleIcon, BrainIcon, PlusIcon, SettingsIcon, SquareIcon } from "lucide-react";
+import Link from "next/link";
+import { useCallback, useRef, useState } from "react";
 import {
   Conversation,
   ConversationContent,
@@ -21,10 +22,17 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Button } from "@/components/ui/button";
+import { SERVICES } from "@/lib/services-catalog";
 import { cn } from "@/lib/utils";
+import { saveSession } from "../actions/sessions";
 import { AgentMessage } from "./agent-message";
+import { EmptyState } from "./empty-state";
 
 const AGENT_NAME = "masidydev";
+const TOTAL_SERVICES = SERVICES.length;
+// In a real deployment this would come from the server (DB query).
+// For now we use 0 as the default connected count; the settings page shows the full list.
+const CONNECTED_COUNT = 0;
 
 export function AgentChat({
   sessionId,
@@ -35,6 +43,10 @@ export function AgentChat({
 }) {
   const [cancellationError, setCancellationError] = useState<string>();
   const [hasInputText, setHasInputText] = useState(false);
+  const [chipText, setChipText] = useState<string>("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const sessionSaved = useRef(false);
+
   const agent = useEveAgent({
     initialSession:
       sessionId === undefined
@@ -57,6 +69,18 @@ export function AgentChat({
     },
   });
 
+  // Save session to DB once we have a session id
+  const activeSessionId = sessionId ?? agent.session?.sessionId;
+  if (activeSessionId && !sessionSaved.current) {
+    sessionSaved.current = true;
+    // Derive title from first user message if available
+    const firstUserMsg = agent.data.messages.find((m) => m.role === "user");
+    const firstText =
+      firstUserMsg?.parts.find((p) => p.type === "text" && "text" in p)?.text ?? undefined;
+    const title = firstText ? firstText.slice(0, 60) : undefined;
+    void saveSession(activeSessionId, title);
+  }
+
   const isBusy = agent.status === "submitted" || agent.status === "streaming";
   const isResuming = agent.status === "resuming";
   const isEmpty = agent.data.messages.length === 0;
@@ -71,7 +95,6 @@ export function AgentChat({
   const errorMessage = cancellationError ?? agent.error?.message ?? turnFailure;
   const hasConversationContent = sessionless || !isEmpty || errorMessage !== undefined;
   const showConversationLayout = isResuming || hasConversationContent;
-  const activeSessionId = sessionId ?? agent.session?.sessionId;
 
   const requestCancellation = () => {
     setCancellationError(undefined);
@@ -85,6 +108,7 @@ export function AgentChat({
     if ((text.length === 0 && message.files.length === 0) || isResuming) return;
 
     setHasInputText(false);
+    setChipText("");
     setCancellationError(undefined);
     const options = isBusy ? { turnPolicy: "steer" as const } : undefined;
 
@@ -109,12 +133,21 @@ export function AgentChat({
     await agent.send(parts, options);
   };
 
+  const handleChipClick = useCallback((prompt: string) => {
+    setChipText(prompt);
+    setHasInputText(true);
+    setTimeout(() => textareaRef.current?.focus(), 50);
+  }, []);
+
   const composer = (
     <PromptInput onSubmit={handleSubmit}>
       <PromptInputTextarea
         disabled={isResuming}
         onChange={(event) => setHasInputText(event.currentTarget.value.trim().length > 0)}
         placeholder="Send a message…"
+        value={chipText}
+        onInput={(e) => setChipText((e.target as HTMLTextAreaElement).value)}
+        ref={textareaRef}
       />
       <ComposerAction
         hasInputText={hasInputText}
@@ -126,7 +159,7 @@ export function AgentChat({
   );
 
   return (
-    <main className="flex h-dvh flex-col overflow-hidden bg-background text-foreground">
+    <main className="flex flex-1 flex-col overflow-hidden bg-background text-foreground">
       {showConversationLayout ? (
         <ChatHeader canStartNewChat={activeSessionId !== undefined} />
       ) : null}
@@ -167,21 +200,24 @@ export function AgentChat({
           </ConversationContent>
           <ConversationScrollButton />
         </Conversation>
-      ) : null}
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col overflow-y-auto">
+          <EmptyState
+            connectedCount={CONNECTED_COUNT}
+            totalCount={TOTAL_SERVICES}
+            onChipClick={handleChipClick}
+          />
+        </div>
+      )}
 
       <div
         className={cn(
           "mx-auto w-full px-4 sm:px-6",
           showConversationLayout
             ? "fixed bottom-0 left-1/2 z-20 max-w-3xl -translate-x-1/2 bg-gradient-to-t from-background via-background to-transparent pt-4 pb-6"
-            : "flex max-w-xl flex-1 flex-col items-center justify-center gap-8 pb-[10vh]",
+            : "w-full max-w-xl px-4 pb-6 sm:px-6",
         )}
       >
-        {showConversationLayout ? null : (
-          <div className="flex flex-col items-center gap-3 text-center">
-            <h1 className="font-medium text-5xl tracking-tighter">{AGENT_NAME}</h1>
-          </div>
-        )}
         <div className="w-full">{composer}</div>
       </div>
     </main>
@@ -242,19 +278,29 @@ function ChatHeader({ canStartNewChat }: { readonly canStartNewChat: boolean }) 
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-20 h-14">
       <div className="relative mx-auto flex h-full w-full max-w-3xl items-center justify-center bg-background px-24">
         <span className="truncate text-muted-foreground text-sm">{AGENT_NAME}</span>
-        {canStartNewChat ? (
-          <Button
-            aria-label="Start a new chat"
-            className="pointer-events-auto fixed top-3 right-6 pr-4"
-            onClick={() => window.location.assign("/s")}
-            size="sm"
-            type="button"
-            variant="ghost"
+        <div className="pointer-events-auto fixed top-3 right-6 flex items-center gap-2">
+          <Link
+            aria-label="Connect accounts"
+            href="/settings"
+            className="flex items-center gap-1.5 rounded-md px-2 py-1 text-muted-foreground text-xs transition-colors hover:bg-muted hover:text-foreground"
           >
-            <PlusIcon className="size-4" />
-            <span className="hidden font-normal text-sm sm:inline">New chat</span>
-          </Button>
-        ) : null}
+            <SettingsIcon aria-hidden="true" className="size-3.5" />
+            <span className="hidden sm:inline">Connect</span>
+          </Link>
+          {canStartNewChat ? (
+            <Button
+              aria-label="Start a new chat"
+              className="pr-4"
+              onClick={() => window.location.assign("/s")}
+              size="sm"
+              type="button"
+              variant="ghost"
+            >
+              <PlusIcon className="size-4" />
+              <span className="hidden font-normal text-sm sm:inline">New chat</span>
+            </Button>
+          ) : null}
+        </div>
       </div>
     </header>
   );

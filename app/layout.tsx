@@ -20,8 +20,15 @@ const mono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "masidydev",
-  description: "A Next.js starter for eve agents with AI Elements.",
+  title: "masidydev — Your AI Operator",
+  description:
+    "masidydev is your universal AI operator. Connect your own tools — Stripe, Notion, Linear, Vercel, and 26 more — and let the agent work across all of them.",
+  openGraph: {
+    title: "masidydev — Your AI Operator",
+    description:
+      "Connect your own tools and let masidydev act on your behalf across 30+ integrated services.",
+    type: "website",
+  },
 };
 
 // The page and Eve routes validate the generated app's Better Auth session.

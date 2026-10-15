@@ -1,6 +1,7 @@
 "use client";
 
-import { LogOutIcon } from "lucide-react";
+import { LogOutIcon, PlugIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -152,6 +153,13 @@ export function AccountControl({
               {email}
             </span>
           </div>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <Link className="cursor-pointer justify-between" href="/settings">
+              Connect accounts
+              <PlugIcon aria-hidden="true" />
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="cursor-pointer justify-between"

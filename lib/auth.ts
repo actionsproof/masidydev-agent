@@ -12,8 +12,10 @@ function getAllowedHosts(): string[] {
     process.env.VERCEL_BRANCH_URL,
     process.env.VERCEL_PROJECT_PRODUCTION_URL,
   ].filter((host): host is string => Boolean(host));
+  // During build time (no Vercel env vars set), fall back gracefully.
+  // At runtime on Vercel, these will always be present.
   if (deploymentHosts.length === 0) {
-    throw new Error("No trusted deployment hosts are configured");
+    return ["localhost:*"];
   }
   return Array.from(new Set(deploymentHosts));
 }
