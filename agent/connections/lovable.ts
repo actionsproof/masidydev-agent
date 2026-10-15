@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://api.lovable.dev/mcp",
   description: "Build and update web applications.",
-  auth: connect("api.lovable.dev/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("api.lovable.dev/masidydev-lovable"),
 });

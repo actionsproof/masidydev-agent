@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://express-mcp-service.adobe.io/mcp",
   description: "Create and edit designs with Adobe Express.",
-  auth: connect("express-mcp-service.adobe.io/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("express-mcp-service.adobe.io/masidydev-adobe"),
 });

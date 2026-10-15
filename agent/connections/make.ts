@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://mcp.make.com",
   description: "Run scenarios and manage automations.",
-  auth: connect("mcp.make.com/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("mcp.make.com/masidydev-make"),
 });

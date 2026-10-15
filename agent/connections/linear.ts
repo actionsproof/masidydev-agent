@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://mcp.linear.app/mcp",
   description: "Linear workspace: issues, projects, cycles, and comments.",
-  auth: connect("mcp.linear.app/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("mcp.linear.app/masidydev-linear"),
 });

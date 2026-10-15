@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://ai-inc.mailchimp.com/claude/mcp/v2",
   description: "Manage email campaigns and audiences.",
-  auth: connect("ai-inc.mailchimp.com/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("ai-inc.mailchimp.com/masidydev-mailchimp"),
 });

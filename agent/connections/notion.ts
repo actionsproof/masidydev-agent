@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://mcp.notion.com/mcp",
   description: "Notion workspace: search and edit pages and databases.",
-  auth: connect("mcp.notion.com/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("mcp.notion.com/masidydev-notion"),
 });

@@ -4,5 +4,5 @@ import { defineMcpClientConnection } from "eve/connections";
 export default defineMcpClientConnection({
   url: "https://mcp.jotform.com/mcp-app",
   description: "Work with forms and submissions.",
-  auth: connect("mcp.jotform.com/prj_itXje5fuZABu4BYhDnNpY6jBl2Yl"),
+  auth: connect("mcp.jotform.com/masidydev-jotform"),
 });
