@@ -40,10 +40,10 @@ importers:
         version: 4.3.0
       '@vercel/connect':
         specifier: 0.4.2
-        version: 0.4.2(ai@7.0.112(zod@4.4.3))(better-auth@1.6.26(next@16.3.0(@types/node@24.13.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(eve@0.66.0(ai@7.0.112(zod@4.4.3)))
+        version: 0.4.2(ai@7.0.137(zod@4.4.3))(better-auth@1.6.26(next@16.3.0(@types/node@24.13.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(eve@0.79.1(ai@7.0.137(zod@4.4.3)))
       ai:
-        specifier: 7.0.112
-        version: 7.0.112(zod@4.4.3)
+        specifier: 7.0.137
+        version: 7.0.137(zod@4.4.3)
       better-auth:
         specifier: 1.6.26
         version: 1.6.26(next@16.3.0(@types/node@24.13.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -57,8 +57,8 @@ importers:
         specifier: 1.1.1
         version: 1.1.1(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       eve:
-        specifier: 0.66.0
-        version: 0.66.0(ai@7.0.112(zod@4.4.3))
+        specifier: 0.79.1
+        version: 0.79.1(ai@7.0.137(zod@4.4.3))
       lucide-react:
         specifier: 1.16.0
         version: 1.16.0(react@19.2.6)
@@ -114,20 +114,20 @@ importers:
 
 packages:
 
-  '@ai-sdk/gateway@4.0.90':
-    resolution: {integrity: sha512-mtmiicpMapQU8K0ynNXCRcO55GVyBv6kjbwsD15RMxJKZUUPR99HfQ7/BsdRLdjSQcL7YcCauMLbguw6J+JFjQ==}
+  '@ai-sdk/gateway@4.0.110':
+    resolution: {integrity: sha512-5IwnOR6v7KC+D9eddUqsCobXl/FbLUVb2LaQc/uyuQdpP3/n9s0YLc9zl4/W3IS/R2pjHrqUfCzEAeOu7bFLoQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider-utils@5.0.46':
-    resolution: {integrity: sha512-XYpiJbd3jW12HC4yzqNmUuPbZ7ooKXVxQjnXCC3O/VzzV2OvRWD6lDFUYYPLs/ZJgTcWWUkmHL/vIyvnxyplVA==}
+  '@ai-sdk/provider-utils@5.0.58':
+    resolution: {integrity: sha512-iXSwKR/7LpHzAlyrUl+bTinwzmZ3Nmup1viwPisM5Gn5cogRdIG4rV9w1ZDuKFcrXyu/AeVs42E1CX/0aNwrfQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider@4.0.18':
-    resolution: {integrity: sha512-+GZJIgz1jk86pwEbb3f1BD2bdoSKyWE4Jg4YUc7NMnMozbWemSKYZcw2F4nMaO5qwsL5A8RmioAKW81YktRpIQ==}
+  '@ai-sdk/provider@4.0.26':
+    resolution: {integrity: sha512-BZ443uBEq6HuMA+Z4b7Hpm65GpZSo7pWqnYqpf/7tAO3C48JbtvAhOE2JnODFj+jodsZzfRHkAyQb64xuD2tZQ==}
     engines: {node: '>=22'}
 
   '@alloc/quick-lru@5.2.0':
@@ -1799,8 +1799,8 @@ packages:
   '@workflow/serde@4.1.0':
     resolution: {integrity: sha512-pav4F2BoirECWR7Nf1TKt+2eETcBj7jj4cBefQ8VXQCA6NPkaKeLfj/zMgi+3zYV5ZIBT4GuUiphsj0/b9hPQQ==}
 
-  ai@7.0.112:
-    resolution: {integrity: sha512-JDIaxfynFQoV/MPh8AUeHIpuFAUjA2uPBXd6Aa8oZBHtiQ58gJ+Q3NHsQUgavIHsA734oCIr3y9QWkhlgCEA0g==}
+  ai@7.0.137:
+    resolution: {integrity: sha512-JxrPkSQknxIN/gYqS3UQksExS6eWI23QMPBrKMGXeeFHhru6xFtF4MuMq17WaHD+lXPh0lne6H0BM2Z2VMW9EQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -2176,13 +2176,13 @@ packages:
   estree-util-is-identifier-name@3.0.0:
     resolution: {integrity: sha512-hFtqIDZTIUZ9BXLb8y4pYGyk6+wekIivNVTcmvk8NoOh+VeRn5y6cEHzbURrWbfp1fIqdVipilzj+lfaadNZmg==}
 
-  eve@0.66.0:
-    resolution: {integrity: sha512-BOghunHqEFxDDzuvAPmpZoj/UbXm1mHIhDIFX1yTqAcMKytKOeMBOhB5ITH8jAh+mZ69xPELb2NFEI8UAxMxIg==}
+  eve@0.79.1:
+    resolution: {integrity: sha512-7hbpSi6mCqsrq3W7C9Y8Z2vTny01hunaNilEFj2qy/DkotztaW+KD4BNwut3oz2iSQ8yryyl46XhOspQ6PmZOg==}
     engines: {node: '>=24'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.0.0
-      ai: ^7.0.105
+      ai: ^7.0.137
       braintrust: ^3.0.0
       chat: ^4.41.0
       dd-trace: ^6.13.0
@@ -3065,8 +3065,8 @@ packages:
     resolution: {integrity: sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw==}
     engines: {node: '>=20.18.1'}
 
-  undici@8.9.0:
-    resolution: {integrity: sha512-aWZpUj7XoGonMClx4gdDRfgBjqeA+F473aDmROQQbM9n6PRfK/u1q/a0X4wMTgcHfT8H6fpbt98PFuDUwFg2YA==}
+  undici@8.10.2:
+    resolution: {integrity: sha512-/y4/bH9YNU5hi9NIrpOuvGXFcxrj3CMrV+/AYpowAYTpHn8gX/XPFjNy766FPoYY0miQhdW977JFWKGNhBdwyQ==}
     engines: {node: '>=22.19.0'}
 
   unenv@2.0.0-rc.24:
@@ -3187,23 +3187,23 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/gateway@4.0.90(zod@4.4.3)':
+  '@ai-sdk/gateway@4.0.110(zod@4.4.3)':
     dependencies:
-      '@ai-sdk/provider': 4.0.18
-      '@ai-sdk/provider-utils': 5.0.46(zod@4.4.3)
+      '@ai-sdk/provider': 4.0.26
+      '@ai-sdk/provider-utils': 5.0.58(zod@4.4.3)
       '@vercel/oidc': 3.2.0
       zod: 4.4.3
 
-  '@ai-sdk/provider-utils@5.0.46(zod@4.4.3)':
+  '@ai-sdk/provider-utils@5.0.58(zod@4.4.3)':
     dependencies:
-      '@ai-sdk/provider': 4.0.18
+      '@ai-sdk/provider': 4.0.26
       '@standard-schema/spec': 1.1.0
       '@workflow/serde': 4.1.0
       eventsource-parser: 3.1.1
       undici: 7.29.0
       zod: 4.4.3
 
-  '@ai-sdk/provider@4.0.18':
+  '@ai-sdk/provider@4.0.26':
     dependencies:
       json-schema: 0.4.0
 
@@ -4758,13 +4758,13 @@ snapshots:
     dependencies:
       execa: 5.1.1
 
-  '@vercel/connect@0.4.2(ai@7.0.112(zod@4.4.3))(better-auth@1.6.26(next@16.3.0(@types/node@24.13.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(eve@0.66.0(ai@7.0.112(zod@4.4.3)))':
+  '@vercel/connect@0.4.2(ai@7.0.137(zod@4.4.3))(better-auth@1.6.26(next@16.3.0(@types/node@24.13.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(eve@0.79.1(ai@7.0.137(zod@4.4.3)))':
     dependencies:
       '@vercel/oidc': 3.8.0
     optionalDependencies:
-      ai: 7.0.112(zod@4.4.3)
+      ai: 7.0.137(zod@4.4.3)
       better-auth: 1.6.26(next@16.3.0(@types/node@24.13.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      eve: 0.66.0(ai@7.0.112(zod@4.4.3))
+      eve: 0.79.1(ai@7.0.137(zod@4.4.3))
 
   '@vercel/oidc@3.2.0': {}
 
@@ -4776,11 +4776,11 @@ snapshots:
 
   '@workflow/serde@4.1.0': {}
 
-  ai@7.0.112(zod@4.4.3):
+  ai@7.0.137(zod@4.4.3):
     dependencies:
-      '@ai-sdk/gateway': 4.0.90(zod@4.4.3)
-      '@ai-sdk/provider': 4.0.18
-      '@ai-sdk/provider-utils': 5.0.46(zod@4.4.3)
+      '@ai-sdk/gateway': 4.0.110(zod@4.4.3)
+      '@ai-sdk/provider': 4.0.26
+      '@ai-sdk/provider-utils': 5.0.58(zod@4.4.3)
       zod: 4.4.3
 
   aria-hidden@1.2.6:
@@ -5123,11 +5123,11 @@ snapshots:
 
   estree-util-is-identifier-name@3.0.0: {}
 
-  eve@0.66.0(ai@7.0.112(zod@4.4.3)):
+  eve@0.79.1(ai@7.0.137(zod@4.4.3)):
     dependencies:
-      ai: 7.0.112(zod@4.4.3)
+      ai: 7.0.137(zod@4.4.3)
       nitro: 3.0.260903-beta
-      undici: 8.9.0
+      undici: 8.10.2
 
   eventsource-parser@3.1.1: {}
 
@@ -6377,7 +6377,7 @@ snapshots:
 
   undici@7.29.0: {}
 
-  undici@8.9.0: {}
+  undici@8.10.2: {}
 
   unenv@2.0.0-rc.24:
     dependencies:
